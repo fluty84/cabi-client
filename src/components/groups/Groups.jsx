@@ -40,9 +40,9 @@ const Groups = ({ groups, setGroups, setNewItem, canGroup }) => {
     return (
         <>
             <Container >
-                <Row className="justify-content-center">
+               {hasGroups && <Row className="justify-content-center">
 
-                    {hasGroups &&
+                     
                         groups?.map(group => {
 
                             return (
@@ -64,8 +64,9 @@ const Groups = ({ groups, setGroups, setNewItem, canGroup }) => {
                                 </Col>
                             )
                         })
-                    }
-                </Row>
+                    
+                </Row>}
+
             </Container>
             {canGroup &&
                 <Container className="buttons">
