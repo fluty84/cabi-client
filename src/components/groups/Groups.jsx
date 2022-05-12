@@ -40,7 +40,7 @@ const Groups = ({ groups, setGroups, setNewItem, canGroup }) => {
     return (
         <>
             <Container >
-               {groups.length && 
+               {groups.length ?
                 <Row className="justify-content-center">
 
 
@@ -68,7 +68,7 @@ const Groups = ({ groups, setGroups, setNewItem, canGroup }) => {
                         }) 
                       }
                     
-                </Row>}
+                </Row> : <h3> Groups are empty </h3>} 
 
             </Container>
             {canGroup &&
