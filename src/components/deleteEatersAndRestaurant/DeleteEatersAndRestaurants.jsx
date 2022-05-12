@@ -8,8 +8,10 @@ const DeleteEatersAndRestaurants = ({ setNewItem, setCanGroup }) => {
 
     const deleteAll = () => {
 
-        lunchService
-            .deleteEatersAndRestaurants()
+        Promise.all([
+            lunchService.deleteEatersAndRestaurants(),
+            lunchService.deleteGroups()])
+
             .then(response => {
                 setCanGroup(false)
                 setNewItem(prev => !prev)

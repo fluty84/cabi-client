@@ -20,10 +20,7 @@ const Groups = ({ groups, setGroups, setNewItem, canGroup }) => {
     }, [groups])
 
     const createGroups = () => {
-        if(hasGroups){
-            alert("Groups already created, delete first")
-            return
-        }
+      
         lunchService
             .generateGroups()
             .then(response => setGroups(response.data))
@@ -31,9 +28,12 @@ const Groups = ({ groups, setGroups, setNewItem, canGroup }) => {
     }
 
     const deleteGroups = () => {
+        setHasGroups(false)
         lunchService
             .deleteGroups()
-            .then(() => setNewItem(prev => !prev))
+            .then(() => {
+                setNewItem(prev => !prev)
+                })
             .catch(err => console.log(err))
     }
 
