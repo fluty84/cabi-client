@@ -40,7 +40,7 @@ const Groups = ({ groups, setGroups, setNewItem, canGroup }) => {
     return (
         <>
             <Container >
-               {hasGroups && 
+               {groups.length && 
                 <Row className="justify-content-center">
 
 
