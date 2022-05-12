@@ -6,7 +6,7 @@ import lunchService from "../../services/lunch.services"
 
 import './Groups.css'
 
-const Groups = ({ groups, setGroups, setNewItem }) => {
+const Groups = ({ groups, setGroups, setNewItem, canGroup }) => {
 
     const [hasGroups, setHasGroups] = useState(false)
 
@@ -63,14 +63,14 @@ const Groups = ({ groups, setGroups, setNewItem }) => {
                      }
                 </Row>
             </Container>
-            <Container className="buttons">
+        { canGroup &&  <Container className="buttons">
                 <Button variant="warning" onClick={createGroups} id='GroupBtn'>
                     Create Groups
                 </Button>
                 <Button variant="danger" onClick={deleteGroups} id='GroupBtn'>
                     Delete Groups
                 </Button>
-            </Container>
+            </Container>}
         </>
     )
 }

@@ -8,6 +8,7 @@ import EatersList from './components/eatersList/EatersList';
 import CreateRestaurant from './components/createRestaurant/CreateRestaurant';
 import RestaurantList from './components/restaurantList/RestaurantList';
 import Groups from './components/groups/Groups';
+import DeleteEatersAndRestaurants from './components/deleteEatersAndRestaurant/DeleteEatersAndRestaurants';
 
 import 'bootstrap/dist/css/bootstrap.min.css'
 import './App.css';
@@ -16,13 +17,14 @@ import './App.css';
 
 function App() {
 
-  const [eaters, setEaters] = useState()
-  const [restaurants, setRestaurants] = useState()
+  const [eaters, setEaters] = useState([])
+  const [restaurants, setRestaurants] = useState([])
   const [groups, setGroups] = useState([])
 
   const [loading, setLoading] = useState("loaded")
 
   const [newItem, setNewItem] = useState(true)
+  const [canGroup, setCanGroup] = useState(false)
 
 
   const getEaters = () => {
@@ -61,6 +63,12 @@ function App() {
 
   }, [newItem])
 
+  useEffect(() => {
+    if (restaurants.length > 0 && eaters.length > 0) {
+      setCanGroup(true)
+    }
+  }, [restaurants, eaters])
+
   return (
     <div className="App">
       <main className="App-header">
@@ -68,8 +76,14 @@ function App() {
           Cabify Restaurat Groups Service.
         </h1>
         <img src={logo} className={`App-logo ${loading}`} alt="logo" />
-      
-        <Groups groups={groups} setGroups={setGroups} setNewItem={setNewItem}></Groups>
+
+        <Groups
+          groups={groups}
+          setGroups={setGroups}
+          canGroup={canGroup}
+          setNewItem={setNewItem}>
+          
+        </Groups>
 
         <Row>
           <Col md={6}>
@@ -90,13 +104,17 @@ function App() {
           </Col>
           <hr></hr>
         </Row>
+        <DeleteEatersAndRestaurants 
+        setNewItem={setNewItem}
+        setCanGroup={setCanGroup}
+        ></DeleteEatersAndRestaurants>
         <a
           className="App-link"
           href="https://github.com/fluty84"
           target="_blank"
           rel="noopener noreferrer"
         >
-          GitHub
+          GitHub Edu Gordillo
         </a>
       </main>
     </div>
