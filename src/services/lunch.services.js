@@ -55,4 +55,4 @@ class LunchService {
 
 const lunchService = new LunchService()
 
-module.exports = lunchService
+export default  lunchService
