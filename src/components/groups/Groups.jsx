@@ -1,4 +1,5 @@
 
+import { useEffect, useState } from "react"
 import { Button, Card, Container, ListGroup, ListGroupItem, Col, Row } from "react-bootstrap"
 
 import lunchService from "../../services/lunch.services"
@@ -6,6 +7,17 @@ import lunchService from "../../services/lunch.services"
 import './Groups.css'
 
 const Groups = ({ groups, setGroups, setNewItem }) => {
+
+    const [hasGroups, setHasGroups] = useState(false)
+
+    useEffect(()=> {
+        if(groups){
+            setHasGroups(true)
+        } else {
+            setHasGroups(false)
+        }
+
+    },[groups])
 
     const createGroups = () => {
         lunchService
@@ -25,8 +37,9 @@ const Groups = ({ groups, setGroups, setNewItem }) => {
         <>
             <Container >
                 <Row className="justify-content-center">
-                   {groups.length  && 
-                        groups.map((group, idx) => {
+                   
+                   {hasGroups  &&                  
+                        groups?.map(group => {
                             
                             return (
                                 <Col md={4} key={group._id} >
