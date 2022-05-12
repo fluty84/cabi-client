@@ -1,0 +1,12 @@
+.card {
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.col-md-4 {
+    margin: 5px;
+}
+
+.list-group-item {
+    font-size: 15px;
+}
