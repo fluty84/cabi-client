@@ -10,14 +10,14 @@ const Groups = ({ groups, setGroups, setNewItem, canGroup }) => {
 
     const [hasGroups, setHasGroups] = useState(false)
 
-    useEffect(()=> {
-        if(groups){
+    useEffect(() => {
+        if (groups) {
             setHasGroups(true)
         } else {
             setHasGroups(false)
         }
 
-    },[groups])
+    }, [groups])
 
     const createGroups = () => {
         lunchService
@@ -37,13 +37,13 @@ const Groups = ({ groups, setGroups, setNewItem, canGroup }) => {
         <>
             <Container >
                 <Row className="justify-content-center">
-                   
-                   {hasGroups  &&                  
+
+                    {hasGroups &&
                         groups?.map(group => {
-                            
+
                             return (
                                 <Col md={4} key={group._id} >
-                                    <Card text="dark"  style={{ width: '18rem' }} className='card'>
+                                    <Card text="dark" style={{ width: '18rem' }} className='card'>
                                         <Card.Title >Group of {group.leader}</Card.Title>
                                         <Card.Subtitle>Restaurant:  {group.restaurant}</Card.Subtitle>
                                         <ListGroup>
@@ -59,18 +59,19 @@ const Groups = ({ groups, setGroups, setNewItem, canGroup }) => {
                                     </Card>
                                 </Col>
                             )
-                        }) 
-                     }
+                        })
+                    }
                 </Row>
             </Container>
-        { canGroup &&  <Container className="buttons">
-                <Button variant="warning" onClick={createGroups} id='GroupBtn'>
-                    Create Groups
-                </Button>
-                <Button variant="danger" onClick={deleteGroups} id='GroupBtn'>
-                    Delete Groups
-                </Button>
-            </Container>}
+            {canGroup &&
+                <Container className="buttons">
+                    <Button variant="warning" onClick={createGroups} id='GroupBtn'>
+                        Create Groups
+                    </Button>
+                    <Button variant="danger" onClick={deleteGroups} id='GroupBtn'>
+                        Delete Groups
+                    </Button>
+                </Container>}
         </>
     )
 }

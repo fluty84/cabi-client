@@ -21,7 +21,8 @@ const DeleteEatersAndRestaurants = ({ setNewItem, setCanGroup }) => {
         <Button
             onClick={deleteAll}
             variant="danger"
-            ><p>Delete Eaters & Restaurants</p></Button>
+        ><p>Delete Eaters & Restaurants</p>
+        </Button>
     )
 }
 
