@@ -1,4 +1,4 @@
-import axios from "axios"
+import axios from 'axios'
 
 class LunchService {
     constructor() {
@@ -55,4 +55,4 @@ class LunchService {
 
 const lunchService = new LunchService()
 
-export default  lunchService
+export default lunchService
