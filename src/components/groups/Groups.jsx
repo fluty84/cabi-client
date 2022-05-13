@@ -8,21 +8,9 @@ import './Groups.css'
 
 const Groups = ({ groups, setGroups, setNewItem, canGroup }) => {
 
-    const [hasGroups, setHasGroups] = useState(false)
-
-    useEffect(() => {
-        if (groups) {
-            setHasGroups(true)
-        } else {
-            setHasGroups(false)
-        }
-
-    }, [groups])
-
     const createGroups = () => {
-      if(groups.length){
-          
-
+      
+        if(groups.length){
           alert("Groups already created, delete first")
           setNewItem(prev => !prev)
       }
@@ -33,7 +21,7 @@ const Groups = ({ groups, setGroups, setNewItem, canGroup }) => {
     }
 
     const deleteGroups = () => {
-        setHasGroups(false)
+       
         lunchService
             .deleteGroups()
             .then(() => {
@@ -48,10 +36,7 @@ const Groups = ({ groups, setGroups, setNewItem, canGroup }) => {
                {groups.length ?
                 <Row className="justify-content-center">
 
-
-
                     { groups?.map(group => {
-
                             return (
                                 <Col md={4} key={group._id} >
                                     <Card text="dark" style={{ width: '18rem' }} className='card'>
