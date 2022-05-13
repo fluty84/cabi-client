@@ -77,7 +77,7 @@ function App() {
         </h1>
         <img src={logo} className={`App-logo ${loading}`} alt="logo" />
 
-        <Groups
+      loading === 'loaded' {  <Groups
           groups={groups}
           setGroups={setGroups}
           canGroup={canGroup}
@@ -107,7 +107,7 @@ function App() {
         <DeleteEatersAndRestaurants 
         setNewItem={setNewItem}
         setCanGroup={setCanGroup}
-        ></DeleteEatersAndRestaurants>
+        ></DeleteEatersAndRestaurants> }
         <a
           className="App-link"
           href="https://github.com/fluty84"
