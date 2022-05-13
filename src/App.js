@@ -77,7 +77,7 @@ function App() {
         </h1>
         <img src={logo} className={`App-logo ${loading}`} alt="logo" />
 
-      loading === 'loaded' {  <Groups
+      loading === 'loaded' && {  <Groups
           groups={groups}
           setGroups={setGroups}
           canGroup={canGroup}
