@@ -4,7 +4,7 @@ const RestaurantList = ({ restaurants }) => {
 
     return (
         <ul>
-            {restaurants.lenght ? <h3>Restaurant LIST</h3> : <h3>Please create Restaurants</h3>}
+            {restaurants.length ? <h3>Restaurant LIST</h3> : <h3>Please create Restaurants</h3>}
             {
                 restaurants?.map((restaurant) => {
                     return (
