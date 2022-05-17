@@ -21,7 +21,7 @@ function App() {
   const [restaurants, setRestaurants] = useState([])
   const [groups, setGroups] = useState([])
 
-  const [loading, setLoading] = useState("loaded")
+  const [loading, setLoading] = useState("loading")
 
   const [newItem, setNewItem] = useState(true)
   const [canGroup, setCanGroup] = useState(false)
@@ -29,18 +29,34 @@ function App() {
 
   const getEaters = () => {
 
+    setLoading("loading")
+
     lunchService
       .getAllEaters()
-      .then(response => setEaters(response.data))
-      .catch(err => console.log(err))
+      .then(response => {
+        setEaters(response.data)
+        setLoading('loaded')
+      })
+      .catch(err => {
+        console.log(err)
+        setLoading('loaded')
+      })
   }
 
   const getRestarurants = () => {
 
+    setLoading("loading")
+
     lunchService
       .getAllRestaurants()
-      .then(response => setRestaurants(response.data))
-      .catch(err => console.log(err))
+      .then(response => {
+        setRestaurants(response.data)
+        setLoading('loaded')
+      })
+      .catch(err => {
+        console.log(err)
+        setLoading('loaded')
+      })
 
   }
 
@@ -55,11 +71,13 @@ function App() {
 
   useEffect(() => {
 
-    setLoading("loading")
-
     Promise.all([getEaters(), getRestarurants(), getGroups()])
-      .then(() => setLoading('loaded'))
-      .catch(() => setLoading('loaded'))
+      .then(() => {
+        console.log('all data loaded')
+      })
+      .catch((err) => {
+        console.log(err)
+      })
 
   }, [newItem])
 
@@ -77,39 +95,40 @@ function App() {
         </h1>
         <img src={logo} className={`App-logo ${loading}`} alt="logo" />
 
-        {loading==='loaded' ? <div className='lists'>
-          <Groups
-            groups={groups}
-            setGroups={setGroups}
-            canGroup={canGroup}
-            setNewItem={setNewItem}>
+        {loading === 'loaded' ?
+          <div className='lists'>
+            <Groups
+              groups={groups}
+              setGroups={setGroups}
+              canGroup={canGroup}
+              setNewItem={setNewItem}>
 
-          </Groups>
+            </Groups>
 
-          <Row>
-            <Col md={6}>
-              <CreateEater setNewItem={setNewItem}></CreateEater>
-            </Col>
-            <Col md={6}>
-              <EatersList eaters={eaters}></EatersList>
-            </Col>
-            <hr></hr>
-          </Row>
+            <Row>
+              <Col md={6}>
+                <CreateEater setNewItem={setNewItem}></CreateEater>
+              </Col>
+              <Col md={6}>
+                <EatersList eaters={eaters}></EatersList>
+              </Col>
+              <hr></hr>
+            </Row>
 
-          <Row>
-            <Col md={6}>
-              <CreateRestaurant setNewItem={setNewItem}></CreateRestaurant>
-            </Col>
-            <Col md={6}>
-              <RestaurantList restaurants={restaurants}></RestaurantList>
-            </Col>
-            <hr></hr>
-          </Row>
-          <DeleteEatersAndRestaurants
-            setNewItem={setNewItem}
-            setCanGroup={setCanGroup}
-          ></DeleteEatersAndRestaurants>
-        </div> : <h3>loading...</h3>}
+            <Row>
+              <Col md={6}>
+                <CreateRestaurant setNewItem={setNewItem}></CreateRestaurant>
+              </Col>
+              <Col md={6}>
+                <RestaurantList restaurants={restaurants}></RestaurantList>
+              </Col>
+              <hr></hr>
+            </Row>
+            <DeleteEatersAndRestaurants
+              setNewItem={setNewItem}
+              setCanGroup={setCanGroup}
+            ></DeleteEatersAndRestaurants>
+          </div> : <h3>loading...</h3>}
         <a
           className="App-link"
           href="https://github.com/fluty84"
