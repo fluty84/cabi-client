@@ -29,12 +29,9 @@ function App() {
 
   const getEaters = () => {
 
-    // setLoading("loading")
-
     lunchService
       .getAllEaters()
       .then(response => setEaters(response.data))
-      //  .then(() => setLoading("loaded"))
       .catch(err => console.log(err))
   }
 

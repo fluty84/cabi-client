@@ -36,7 +36,7 @@ const Groups = ({ groups, setGroups, setNewItem, canGroup }) => {
         <>
             <Container >
                {groups.length ?
-                <Row className="justify-content-center">
+                <Row className="justify-content-evenly">
 
                     { groups?.map(group => {
                             return (
